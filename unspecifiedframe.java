@@ -1,1 +1,0 @@
-class unspecifiedframe extends Exception{}
