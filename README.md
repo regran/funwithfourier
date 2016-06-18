@@ -1,2 +1,2 @@
 # funwithfourier
-Project implementing fourier transform in Java to differentiate between differentiate between different instruments
+Project implementing fourier transforms in Java to differentiate between different instruments
