@@ -42,6 +42,14 @@ public class Complex{
 		return real*real+imag*imag;
 	}
 	
+	public double[] getMagnitudes(Complex[] c){
+		double[] d = new double[c.length];
+		for(int i=0;i<c.length;i++){
+			d[i]=c[i].magnitude();
+		}
+		return d;
+	}
+	
 	public static Complex downwithcis(double a){ //cosa+isina, i.e. e^ia
 		return new Complex(Math.cos(a), Math.sin(a));
 	}
