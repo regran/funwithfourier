@@ -31,7 +31,7 @@ public class audin{
 		return inp;
 	}
 	
-	public byte[] getdata(){
+	public byte[] getdataFromFile(){
 		int frames=0;
 		int frameSize=form.getFrameSize(); //number of samples in a frame
 		int numBytes=1024*frameSize; //1024 samples in array
@@ -39,16 +39,15 @@ public class audin{
 		try{
 			int framesread=0;
 			int bytesread=0;
-			while((bytesread=inp.read(audioBytes)) != -1){
+			while((bytesread=inp.read(audioBytes, 0, audioBytes.length)) != -1){
 				framesread=bytesread/frameSize;
 				frames+=framesread;
 			}
-		return audioBytes;
 		} catch(Exception e){
 			System.out.println("RIP");
 		}
 
-		return new byte[1];
+		return audioBytes;
 	}
 	
 	public double[] toDouble(byte[] b){ //precond: byte array of audio data
@@ -64,8 +63,8 @@ public class audin{
 		for(int i=0; i<dubs.length*2; i+=2){ 	//convert pairs of bytes to Endian values
 			int b1=b[i];
 			int b2=b[i+1];
-			if(b1<0) b1+= 0x100;
-			if(b2<0) b2+=0x100;
+		//	if(b1<0) b1+= 0x100;
+		//	if(b2<0) b2+=0x100;
 			
 			if(isBig) dubs[i/2] = b1 + (b2<<8);
 			else dubs[i/2]=(b1<<8) + b2;
@@ -73,14 +72,16 @@ public class audin{
 		return dubs; //postcond: samples as doubles
 	}
 	public static void main(String[] args){
-		audin input = new audin("intro.wav");
-		byte[] b = input.getdata();
+		audin input = new audin("c1.wav");
+		byte[] b = input.getdataFromFile();
 		double[] d = input.toDouble(b);
 		Complex[] comp = Complex.makeComp(d);
 		Complex[] p = fft.pad(comp);
 		Complex[] freq = fft.transform(p);
-		for(int k=0; k<p.length; k++) {
-			Complex.printlnComp(freq[k]);
+		for(int k=0; k<d.length; k++) {
+			//output frequency domain or time domain
+//			Complex.printlnComp(freq[k]);
+			System.out.println(d[k]);
 		}
 	}
 }
