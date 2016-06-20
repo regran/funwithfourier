@@ -38,6 +38,10 @@ public class Complex{
 		return Math.sqrt(Math.pow(real,2)+Math.pow(imag,2));
 	}
 	
+	public double magnitude(){
+		return real*real+imag*imag;
+	}
+	
 	public static Complex downwithcis(double a){ //cosa+isina, i.e. e^ia
 		return new Complex(Math.cos(a), Math.sin(a));
 	}
