@@ -42,7 +42,7 @@ public class Complex{
 		return real*real+imag*imag;
 	}
 	
-	public double[] getMagnitudes(Complex[] c){
+	public static double[] getMagnitudes(Complex[] c){
 		double[] d = new double[c.length];
 		for(int i=0;i<c.length;i++){
 			d[i]=c[i].magnitude();
