@@ -111,7 +111,7 @@ public class audin{
 		//get array of magnitudes of transform
 		double[] mag1=(Complex.getMagnitudes(freq));
 		double[] mag2=(Complex.getMagnitudes(freq2));
-		//output sum of differences of magnitudes of power spectrums of two sound files
+		//output sum of differences of magnitudes of power spectra of two sound files
 		System.out.println(audin.sumofdif(mag1, mag2));
 		
 		//output data to text file
