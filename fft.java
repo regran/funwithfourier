@@ -104,22 +104,22 @@ public class fft{
 		return padded; //postcond: list padded with zeroes until its length is a power of 2
 	}
 	
-	public static double[] repeat(int n, double i){ //n is desired length of array, i is repeating number
+	public static double[] repeat(int n, double i){ //n is desired length of array, i is repeating number, used for testing
 		double[] ans = new double[n];
 		for(int j=0;j<n;j++){
 			ans[j]=i;
 		}
-		return ans;
+		return ans; //returns array of length n with i repeating
 	}
 	
-	public static void main(String[] args){ //testing
-		double[] test = {57, 3, 2, 9, 7, 6, 12, 100};
-		System.out.println(Double.MAX_VALUE);
-		Complex[] samples = Complex.makeComp(test);
-		Complex[] frequencies=fft.transform(fft.pad(samples));
-		for(int i=0; i<10; i++){
+//	public static void main(String[] args){ //testing
+//		double[] test = {57, 3, 2, 9, 7, 6, 12, 100};
+//		System.out.println(Double.MAX_VALUE);
+//		Complex[] samples = Complex.makeComp(test);
+//		Complex[] frequencies=fft.transform(fft.pad(samples));
+//		for(int i=0; i<10; i++){
 //		for(Complex c:frequencies){
-			Complex.printlnComp(fft.reverse(frequencies)[i]);
-		}
-	}
+//			Complex.printlnComp(fft.reverse(frequencies)[i]);
+//		}
+//	}
 }
