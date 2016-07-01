@@ -31,18 +31,18 @@ public class Complex{
 	public static Complex div(Complex a, Complex b) throws divbyzero{ //divide
 		if(b.real==0 && b.imag==0) throw(new divbyzero());
 		Complex conj = new Complex(b.real, -b.imag);        //conjugate for division
-		return new Complex((a.mult(conj)).real/(b.mult(conj)).real, (a.mult(conj)).imag/(b.mult(conj)).real);
+		return new Complex((a.mult(conj)).real/(b.mult(conj)).real, (a.mult(conj)).imag/(b.mult(conj)).real); //
 	} 
 	
 	public double abs(){ //find absolute value of a complex number
 		return Math.sqrt(Math.pow(real,2)+Math.pow(imag,2));
 	}
 	
-	public double magnitude(){
+	public double magnitude(){ 
 		return real*real+imag*imag;
 	}
 	
-	public static double[] getMagnitudes(Complex[] c){
+	public static double[] getMagnitudes(Complex[] c){ //get the magnitudes of a list of complex numbers
 		double[] d = new double[c.length];
 		for(int i=0;i<c.length;i++){
 			d[i]=c[i].magnitude();
@@ -61,81 +61,66 @@ public class Complex{
 		while(n<len){
 			comp[n]=new Complex(v[n]);
 			n++;
-		}
+		} //make complex number with imaginary part of 0
 		return comp;
 	}
 	
 	public static void printComp(Complex a){ //output a complex number
+		//Case of both parts being 0
 		if (a.real==0 && a.imag == 0){
 			System.out.print(0);
 			return;
 		}
+		//Output real part if it's not 0
 		if (a.real!=0){
 			System.out.print(a.real);
 		}
+		//If there's no imaginary part, you're done
 		if (a.imag == 0){
 			return;
 		}
+		//If the imaginary part is positive, add a plus sign
 		if(a.imag > 0&&a.real!=0){
 			System.out.print("+");
 		}
+		//Output imaginary part if it doesn't have an absolute value of 1
 		if (a.imag!=1 && a.imag!= -1){
 			System.out.print(a.imag);
 		}
+		//to make "-i"
 		if(a.imag==-1){
 			System.out.print("-");
 		}
+		//imaginary numbers yay
 		System.out.print("i");
 		return;
 	}
+	
 	public static void printlnComp(Complex a){ //output complex number with line breaks
-		if (a.real==0 && a.imag == 0){
-			System.out.print(0);
-			System.out.println();
-			return;
-		}
-		if (a.real!=0){
-			System.out.print(a.real);
-		}
-		if (a.imag == 0){
-			System.out.println();
-			return;
-		}
-		if(a.imag > 0&&a.real!=0){
-			System.out.print("+");
-		}
-
-		if (a.imag!=1 && a.imag!= -1){
-			System.out.print(a.imag);
-		}
-		if(a.imag==-1){
-			System.out.print("-");
-		}
-		System.out.print("i");
+		printComp(a);
 		System.out.println();
-		return;
 	}
-	public static void main(String[] args){  //testing
-		double a=Double.parseDouble(args[0]);
-		double b=Double.parseDouble(args[1]);
-		double c=Double.parseDouble(args[2]);
-		double d=Double.parseDouble(args[3]);
-		double[] ys = {a, b, c, d};
-		Complex u = new Complex(a, b);
-		Complex w = new Complex(c, d);
-		printlnComp(u.add(w));
-		printlnComp(u.sub(w));
-		printlnComp(u.mult(w));
+	// public static void main(String[] args){  //testing
+	// 	double a=Double.parseDouble(args[0]);
+	// 	double b=Double.parseDouble(args[1]);
+	// 	double c=Double.parseDouble(args[2]);
+	// 	double d=Double.parseDouble(args[3]);
+	// 	double[] ys = {a, b, c, d};
+	// 	Complex u = new Complex(a, b);
+	// 	Complex w = new Complex(c, d);
+	// 	printlnComp(u.add(w));
+	// 	printlnComp(u.sub(w));
+	// 	printlnComp(u.mult(w));
 
-		try{ printlnComp(div(u,w));
-		} catch(divbyzero e){
-			System.out.println("Cannot divide by zero.");
-		}
-		System.out.println(u.abs());
-		printlnComp(downwithcis(Math.PI/2));
-		Complex[] xs=makeComp(ys);
-		for(Complex x:xs){
-			printlnComp(x);
-		}
-	}
+	// 	try{ printlnComp(div(u,w));
+	// 	} catch(divbyzero e){
+	// 		System.out.println("Cannot divide by zero.");
+	// 	}
+	// 	System.out.println(u.abs());
+	// 	printlnComp(downwithcis(Math.PI/2));
+	// 	Complex[] xs=makeComp(ys);
+	// 	for(Complex x:xs){
+	// 		printlnComp(x);
+	// 	}
+	// }
 }
